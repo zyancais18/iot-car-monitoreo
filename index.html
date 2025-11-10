@@ -41,15 +41,14 @@
   </footer>
 
   <script>
-    // Ajusta aquí si necesitas valores fijos. Por defecto usa la IP actual.
     window.CONFIG = {
-      API: "http://34.196.181.221:5500/api",
-      SIO: "http://34.196.181.221:5500",
-      SIO_NAMESPACE: "/ws",
-      SIO_EVENT: "broadcast",
-      DEVICE_ID: 1
-    };
+    // Deben ser https y wss. Usa tu dominio/proxy HTTPS.
+    API: "http://34.196.181.221:5500/api",
+    WS:  "wss://34.196.181.221:5500/ws",
+    DEVICE_ID: 1
+  };
   </script>
   <script src="assets/js/viewer.js"></script>
 </body>
 </html>
+
