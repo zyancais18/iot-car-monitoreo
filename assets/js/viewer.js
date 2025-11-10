@@ -2,20 +2,8 @@
 //  viewer.js – Monitor en tiempo real (WebSocket nativo)
 // =======================
 
-// Lee del CONFIG y, si por error pasan http/ws con página https, “asegura”
-const rawApi = (window.CONFIG && window.CONFIG.API) || `http://${location.hostname}:5500/api`;
-const rawWs  = (window.CONFIG && window.CONFIG.WS)  || `ws://${location.hostname}:5501/ws`;
-
-function secureURL(u) {
-  if (location.protocol === "https:") {
-    if (u.startsWith("http://")) u = "https://" + u.slice(7);
-    if (u.startsWith("ws://"))   u = "wss://"   + u.slice(5);
-  }
-  return u;
-}
-
-const API_BASE = secureURL(rawApi);
-const WS_URL   = secureURL(rawWs);
+const API_BASE = (window.CONFIG && window.CONFIG.API) || `http://${location.hostname}:5500/api`;
+const WS_URL   = (window.CONFIG && window.CONFIG.WS)  || `ws://${location.hostname}:5501/ws`;
 
 const $ = s => document.querySelector(s);
 const logMov   = $("#logMov");
@@ -126,4 +114,3 @@ window.addEventListener("DOMContentLoaded", () => {
   bootstrapPull();
   connectWS();
 });
-
