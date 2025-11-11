@@ -44,10 +44,9 @@
     // Ajusta aquí si necesitas valores fijos. Por defecto usa la IP actual.
     window.CONFIG = {
       API: "http://34.196.181.221:5500/api",
-      SIO: "http://34.196.181.221:5500",
-      SIO_NAMESPACE: "/ws",
-      SIO_EVENT: "broadcast",
-      DEVICE_ID: 1
+      SIO: "http://34.196.181.221:5500",   // base del servidor Flask+Socket.IO
+      SIO_NAMESPACE: "/ws",            // namespace del back
+      SIO_EVENT: "broadcast"           // evento que emite el back
     };
   </script>
   <script src="assets/js/viewer.js"></script>
