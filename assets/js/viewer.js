@@ -3,7 +3,7 @@
 // =======================
 
 const API_BASE = (window.CONFIG && window.CONFIG.API) || `http://34.196.181.221:5500/api`;
-const WS_URL   = (window.CONFIG && window.CONFIG.WS)  || `ws://${location.hostname}:5501/ws`;
+const WS_URL   = (window.CONFIG && window.CONFIG.WS)  || `ws:34.196.181.221:5501/ws`;
 
 const $ = s => document.querySelector(s);
 const logMov   = $("#logMov");
@@ -114,6 +114,7 @@ window.addEventListener("DOMContentLoaded", () => {
   bootstrapPull();
   connectWS();
 });
+
 
 
 
