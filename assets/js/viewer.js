@@ -2,7 +2,7 @@
 //  viewer.js – Monitor en tiempo real (WebSocket nativo)
 // =======================
 
-const API_BASE = (window.CONFIG && window.CONFIG.API) || `http://${location.hostname}:5500/api`;
+const API_BASE = (window.CONFIG && window.CONFIG.API) || `https://${location.hostname}:5500/api`;
 const WS_URL   = (window.CONFIG && window.CONFIG.WS)  || `ws://${location.hostname}:5501/ws`;
 
 const $ = s => document.querySelector(s);
@@ -114,3 +114,4 @@ window.addEventListener("DOMContentLoaded", () => {
   bootstrapPull();
   connectWS();
 });
+
