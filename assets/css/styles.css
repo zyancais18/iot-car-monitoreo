@@ -1,6 +1,4 @@
-:root{
-  --c1:#503459; --c2:#81638b; --c3:#b695c0; --c4:#dac9df; --c5:#ffffff;
-}
+:root{ --c1:#503459; --c2:#81638b; --c3:#b695c0; --c4:#dac9df; --c5:#ffffff; }
 
 body{ background: var(--c4); color: var(--c1); font-family: 'Segoe UI', ui-sans-serif, system-ui, -apple-system, Roboto, Arial; }
 .app-header{ background: var(--c1); color: var(--c5); border-bottom: 4px solid #6f4b83; }
