@@ -11,7 +11,7 @@ const logMov   = $("#logMov");
 const logDemo  = $("#logDemo");
 const logObs   = $("#logObs");
 const wsStatus = $("#wsStatus");
-const MAX = 50;
+const MAX = 5;
 
 // Mapeo de texto de obstáculos para el monitoreo
 const OBST_TEXTO = {
@@ -166,6 +166,7 @@ window.addEventListener("DOMContentLoaded", () => {
   bootstrapPull();
   connectWS();
 });
+
 
 
 
