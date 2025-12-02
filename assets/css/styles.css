@@ -1,30 +1,75 @@
 :root{ --c1:#503459; --c2:#81638b; --c3:#b695c0; --c4:#dac9df; --c5:#ffffff; }
 
-body{ background: var(--c4); color: var(--c1); font-family: 'Segoe UI', ui-sans-serif, system-ui, -apple-system, Roboto, Arial; }
+/* 1. Asegurar 100% de altura en la ventana */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Configurar el body como contenedor flexbox vertical */
+body{
+  background: var(--c4);
+  color: var(--c1);
+  font-family: 'Segoe UI', ui-sans-serif, system-ui, -apple-system, Roboto, Arial;
+  display: flex;
+  flex-direction: column;
+}
+
 .app-header{ background: var(--c1); color: var(--c5); border-bottom: 4px solid #6f4b83; }
 
 .section-title{ background: var(--c2); font-size: 1.05rem; }
-.card{ border:none; background:var(--c5); border-radius:14px; overflow:hidden; }
-.list-group-item{ border-color: var(--c4); }
 
-/* Lista con altura para aprox. 5 elementos y scroll interno */
-.log-list{
-  max-height: 55vh;      /* altura aprox. para que todo quepa en la pantalla */
-  overflow-y: auto;      /* scroll interno vertical */
-  overflow-x: hidden;
+/* 3. Permitir que el contenedor principal (main) ocupe el espacio restante */
+.container {
+  flex-grow: 1;
+  padding-bottom: 0 !important; /* Eliminar padding inferior del container */
+  display: flex; /* Nuevo: Habilitar flex para distribuir secciones */
+  flex-direction: column; /* Nuevo: Organizar secciones verticalmente */
 }
 
+/* 4. Ajustes a las tarjetas (Sections) */
+.mb-4 {
+  margin-bottom: 0 !important; /* Eliminar margen inferior */
+  padding-top: 1rem;
+}
+.mb-4:last-child {
+  flex-grow: 1; /* Permite que la última sección ocupe el espacio restante */
+  padding-bottom: 1rem;
+}
+
+/* 5. Ajustes a la tarjeta y su cuerpo para que la lista crezca */
+.card{
+  border:none;
+  background:var(--c5);
+  border-radius:14px;
+  overflow:hidden;
+  display: flex; /* Nuevo: Convertir la tarjeta en flex vertical */
+  flex-direction: column;
+  height: 100%; /* Ocupar toda la altura del padre (.mb-4) */
+}
+.card-body {
+  flex-grow: 1; /* Permitir que el cuerpo de la tarjeta crezca */
+  padding: 0 !important;
+  display: flex;
+}
+
+.list-group-item{ border-color: var(--c4); }
+
+/* 6. Ajustar la lista de logs para manejar el desbordamiento interno */
+.log-list{
+  max-height: unset; /* Anular el max-height fijo */
+  overflow-y: auto; /* Permitir scroll solo dentro de la lista si es necesario */
+  flex-grow: 1; /* Ocupar todo el espacio dentro del card-body */
+}
 .log-item{ display:flex; align-items:center; gap:.5rem; padding:.65rem .9rem; }
 .log-item .pill{ min-width:84px; font-size:.75rem; }
 
 .badge.bg-secondary{ background: var(--c3) !important; }
 .app-footer{
-  background: var(--c1);             /* mismo color que el header */
+  background: var(--c1);
   color: #ffffff;
-  border-top: 0.5px solid #6f4b83;     /* igual que el borde inferior del header */
+  border-top: 0.5px solid #6f4b83;
   text-align: center;
   font-size: 0.9rem;
 }
-
-
-
