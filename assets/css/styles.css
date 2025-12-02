@@ -9,8 +9,8 @@ body{ background: var(--c4); color: var(--c1); font-family: 'Segoe UI', ui-sans-
 
 /* Lista con altura para aprox. 5 elementos y scroll interno */
 .log-list{
-  max-height: 240px;    /* ajusta si quieres un poquito más o menos */
-  overflow-y: auto;     /* scroll vertical interno */
+  max-height: 55vh;      /* altura aprox. para que todo quepa en la pantalla */
+  overflow-y: auto;      /* scroll interno vertical */
   overflow-x: hidden;
 }
 
@@ -25,5 +25,6 @@ body{ background: var(--c4); color: var(--c1); font-family: 'Segoe UI', ui-sans-
   text-align: center;
   font-size: 0.9rem;
 }
+
 
 
