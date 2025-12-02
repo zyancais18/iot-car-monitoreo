@@ -15,7 +15,8 @@ body{ background: var(--c4); color: var(--c1); font-family: 'Segoe UI', ui-sans-
 .app-footer{
   background: var(--c1);             /* mismo color que el header */
   color: #ffffff;
-  border-top: 2px solid #6f4b83;     /* igual que el borde inferior del header */
+  border-top: 0.5px solid #6f4b83;     /* igual que el borde inferior del header */
   text-align: center;
   font-size: 0.9rem;
 }
+
