@@ -11,7 +11,8 @@ const logMov   = $("#logMov");
 const logDemo  = $("#logDemo");
 const logObs   = $("#logObs");
 const wsStatus = $("#wsStatus");
-const MAX = 5;
+const MAX   = 50;  // máximo histórico en la lista
+const TOP_N = 5;   // solo mostrar top 5 iniciales
 
 // Mapeo de texto de obstáculos para el monitoreo
 const OBST_TEXTO = {
@@ -37,7 +38,6 @@ function pushLog(list, html, cls=""){
   while (list.children.length > MAX) list.removeChild(list.lastChild);
 }
 
-// --- Bootstrap inicial (pull) para no ver vacío
 async function bootstrapPull(){
   try{
     const [m, d, o] = await Promise.all([
@@ -46,31 +46,40 @@ async function bootstrapPull(){
       fetch(`${API_BASE}/obstaculos/ultimos10/1`).then(r=>r.json()).catch(()=>({}))
     ]);
 
-    // Movimientos
-    (m.data?.[0] || []).reverse().forEach(x=>{
-      const txt = x.status_texto || (`status ${x.status_clave ?? "?"}`);
-      pushLog(logMov, `${pill("MOV","bg-primary")} <strong>${txt}</strong>`);
-    });
+    // Movimientos – solo los últimos 5
+    (m.data?.[0] || [])
+      .slice(0, TOP_N)   // toma solo 5 más recientes
+      .reverse()         // para que el más nuevo quede arriba/abajo según tu UX
+      .forEach(x=>{
+        const txt = x.status_texto || (`status ${x.status_clave ?? "?"}`);
+        pushLog(logMov, `${pill("MOV","bg-primary")} <strong>${txt}</strong>`);
+      });
 
-    // Secuencias DEMO
-    (d.data?.[0] || []).reverse().forEach(x=>{
-      const name = x.nombre || (`Secuencia #${x.secuencia_id ?? "?"}`);
-      pushLog(logDemo, `${pill("DEMO","bg-info")} <strong>${name}</strong>`);
-    });
+    // Secuencias DEMO – solo las últimas 5
+    (d.data?.[0] || [])
+      .slice(0, TOP_N)
+      .reverse()
+      .forEach(x=>{
+        const name = x.nombre || (`Secuencia #${x.secuencia_id ?? "?"}`);
+        pushLog(logDemo, `${pill("DEMO","bg-info")} <strong>${name}</strong>`);
+      });
 
-    // Obstáculos
-    (o.data?.[0] || []).reverse().forEach(x=>{
-      const clave = x.obstaculo_clave ?? x.obstaculo_id;
-      const txt   = x.obstaculo_texto || OBST_TEXTO[clave] || `Obstáculo ${clave ?? "?"}`;
-      const modo  = x.modo ? ` (${x.modo})` : "";
-      pushLog(
-        logObs,
-        `${pill("OBS","bg-warning")} <strong>${txt}</strong>${modo}`
-      );
-    });
+    // Obstáculos – solo los últimos 5
+    (o.data?.[0] || [])
+      .slice(0, TOP_N)
+      .reverse()
+      .forEach(x=>{
+        const clave = x.obstaculo_clave ?? x.obstaculo_id;
+        const txt   = x.obstaculo_texto || OBST_TEXTO[clave] || `Obstáculo ${clave ?? "?"}`;
+        const modo  = x.modo ? ` (${x.modo})` : "";
+        pushLog(
+          logObs,
+          `${pill("OBS","bg-warning")} <strong>${txt}</strong>${modo}`
+        );
+      });
 
   }catch(e){
-    console.error("[bootstrapPull] error:", e);
+    console.error("Error en bootstrapPull", e);
   }
 }
 
@@ -166,6 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
   bootstrapPull();
   connectWS();
 });
+
 
 
 
