@@ -7,7 +7,13 @@ body{ background: var(--c4); color: var(--c1); font-family: 'Segoe UI', ui-sans-
 .card{ border:none; background:var(--c5); border-radius:14px; overflow:hidden; }
 .list-group-item{ border-color: var(--c4); }
 
-.log-list{ max-height: 360px; overflow: auto; }
+/* Lista con altura para aprox. 5 elementos y scroll interno */
+.log-list{
+  max-height: 240px;    /* ajusta si quieres un poquito más o menos */
+  overflow-y: auto;     /* scroll vertical interno */
+  overflow-x: hidden;
+}
+
 .log-item{ display:flex; align-items:center; gap:.5rem; padding:.65rem .9rem; }
 .log-item .pill{ min-width:84px; font-size:.75rem; }
 
@@ -19,4 +25,5 @@ body{ background: var(--c4); color: var(--c1); font-family: 'Segoe UI', ui-sans-
   text-align: center;
   font-size: 0.9rem;
 }
+
 
