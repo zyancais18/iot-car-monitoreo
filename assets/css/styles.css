@@ -12,4 +12,10 @@ body{ background: var(--c4); color: var(--c1); font-family: 'Segoe UI', ui-sans-
 .log-item .pill{ min-width:84px; font-size:.75rem; }
 
 .badge.bg-secondary{ background: var(--c3) !important; }
-footer{ background: var(--c5); border-top: 2px solid var(--c3); }
+.app-footer{
+  background: var(--c1);             /* mismo color que el header */
+  color: #ffffff;
+  border-top: 2px solid #6f4b83;     /* igual que el borde inferior del header */
+  text-align: center;
+  font-size: 0.9rem;
+}
