@@ -88,10 +88,10 @@ let ws, heartbeat;
 
 function connectWS(){
   ws = new WebSocket(WS_URL);
-  setWs("Conectando…", "bg-warning");
+  setWs("WS: Conectando…", "bg-warning");
 
   ws.onopen = () => {
-    setWs("Conectado", "bg-success");
+    setWs("WS: Conectado", "bg-success");
     // heart-beat opcional para mantener viva la conexión
     heartbeat = setInterval(() => {
       try { ws.send(JSON.stringify({type:"ping"})); } catch(_) {}
@@ -175,6 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
   bootstrapPull();
   connectWS();
 });
+
 
 
 
